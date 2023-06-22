@@ -1,16 +1,42 @@
+<meta charset="UTF-8">
 <script>
+
     //PROBLEMA: Viajar para algum lugar
-    //Peça para o usuário informar para qual estado deseja realizar a viagem. (Rio Grande do Sul-RS ou Minas Gerais-MG). Peça também para informar quantos dias ficará em viagem. O usuário também deverá informar "quantos dinheiros" (R$) possui para gastar na viagem.
+    //Peça para o usuário informar para qual estado deseja realizar a viagem. (Rio Grande do Sul-RS ou Minas Gerais-MG). Peça também para 
+    //informar quantos dias ficará em viagem. O usuário também deverá informar "quantos dinheiros" (R$) possui para gastar na viagem.
     
     //Considere que o custo diário de viagem para "RS" será de R$ 180,00 (180) e o custo diário de viagem para "MG" será de R$ 210,00 (210).
     
-    //Calcule se o usuário possui dinheiro suficiente para realizar a viagem para o destino que pretende. Se o usuário puder viajar, o programa apresentará a mensagem "Boa viagem" e quantos dias poderá ficar no destino, além de qual será o custo da viagem. Caso não possa viajar o programa apresentará a mensagem "Sem Férias" e também apresentará "quantos dinheiros" (R$) estão faltando para realizar a viagem.
+    //Calcule se o usuário possui dinheiro suficiente para realizar a viagem para o destino que pretende. Se o usuário puder viajar, o programa 
+    //apresentará a mensagem "Boa viagem" e quantos dias poderá ficar no destino, além de qual será o custo da viagem. Caso não possa viajar o programa 
+    //apresentará a mensagem "Sem Férias" e também apresentará "quantos dinheiros" (R$) estão faltando para realizar a viagem.
 
     //ENTRADA
-
+    const estado = prompt(`Informe para qual estado deseja viajar. Responda com: "RS" para Rio Grande do Sul ou "MG" para Minas Gerais.`).trim().toUpperCase();
+    const tempo = Number(prompt(`Informe por quantos dias você irá viajar.`).trim());
+    const dinheiro = Number(prompt(`Informe quanto dinheiro você tem para realizar dua viagem em R$`).trim().replace(",","."));
+    let custo = 0;
+    let viagem = 0;
 
     //PROCESSAMENTO
-
+    if (estado === "MG" && dinheiro >= 210) {
+        custo = dinheiro + tempo * 210;
+        viagem = Math.floor(dinheiro / tempo);
+        alert(`Boa viagem, você poderá viajar por ${viagem} dias e custará R$${custo.toFixed(2).replace(".",",")}.`);
+    }
+    else if (estado === "MG" && dinheiro < 210) {
+        custo = tempo * dinheiro - 210;
+        alert(`Sem férias. Está faltando R$${custo} para realizar sua viagem.`)
+    }
+    else if (estado === "RS" && dinheiro >= 180) {
+        custo = dinheiro + tempo * 180;
+        viagem = Math.floor(dinheiro / tempo);
+        alert(`Boa viagem, você poderá viajar por ${viagem} dias e custará R$${custo.toFixed(2).replace(".",",")}.`);
+    }
+    else if (estado === "RS" && dinheiro < 180) {
+        custo = tempo * dinheiro - 180;
+        alert(`Sem férias. Está faltando R$${custo} para realizar sua viagem.`)
+    }
 
     //SAÍDA
 
